@@ -1,0 +1,42 @@
+
+<div class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <div class="image-container">
+          <div class="image-item" ng-repeat="photo in photos | orderBy:'_id' track by photo._id" ng-class="{'active':ctrl.photoId===photo._id}">
+            <a href="" ng-click="select(photo._id)">
+              <img src="{{photo.image}}" alt="Image" class="">
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="saveAndClose()">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- <div>
+<div class="panel thumbnail-picker">
+  <div class="panel-body">
+
+    <div class="image-container">
+      <div class="image-item" ng-repeat="photo in photos" ng-class="{'active':ctrl.photoId===photo._id}">
+        <a href="" ng-click="select(photo._id)">
+          <img src="{{photo.image}}" alt="Image" class="">
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+</div> -->

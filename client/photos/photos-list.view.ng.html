@@ -1,0 +1,25 @@
+<div class="photos-list container">
+  <h1>Photos</h1>
+
+  <button class="btn btn-info" ng-click="morePhotos()">more photos</button>
+
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+
+      <!-- <div class="image-container">
+        <div class="image-item" ng-repeat="photo in photos | orderBy:'_id' track by photo._id" ng-class="{'active':ctrl.photoId===photo._id}">
+          <a href="" ng-click="select(photo._id)">
+            <img src="{{photo.image}}" alt="Image" class="">
+          </a>
+        </div>
+      </div> -->
+
+      <div class="image-container">
+        <photo-item class="image-item lg" ng-repeat="photo in photos | orderBy:'_id' track by photo._id" photo="photo"></photo-item>
+      </div>
+      <button class="btn btn-info" ng-click="morePhotos()">more photos</button>
+    </div>
+  </div>
+  <p>Total number of photos: {{photosCount.count}}</p>
+</div>
