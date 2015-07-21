@@ -11,5 +11,7 @@
     "tests"
   ],
   "dependencies": {
+    "bower": "*",
+    "install": "~1.0.4"
   }
 }

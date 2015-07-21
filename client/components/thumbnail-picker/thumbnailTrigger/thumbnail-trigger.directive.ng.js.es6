@@ -8,7 +8,7 @@ angular.module('angularApp')
       itemId:"=",
       autoSave:"="
     },
-    scope:{},
+    scope:true,
     controller:function($scope, $element, $rootScope){
       let open = false;
       let getButton = () => {
@@ -17,7 +17,7 @@ angular.module('angularApp')
       let getPicker = () => {
         return $element[0].getElementsByTagName("thumbnail-picker");
       }
-      let buttonText = getButton()[0].innerHTML;
+      // let buttonText = getButton()[0].innerHTML;
 
       this.togglePicker = () => {
         if(open === false) {
@@ -40,7 +40,7 @@ angular.module('angularApp')
       });
     },
     controllerAs:'ctrl',
-    template:'<button ng-click="ctrl.togglePicker()" class="btn btn-info btn-sm">add image</button>',
+    template:'<button ng-click="ctrl.togglePicker()" class="btn">add image</button>',
     link:function(scope, element, attrs, ctrl){
 
     }

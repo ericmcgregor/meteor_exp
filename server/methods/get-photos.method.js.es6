@@ -1,6 +1,23 @@
 'use strict';
 
 Meteor.methods({
+  removeAll: function() {
+
+        return Restaurants.remove({});
+
+  },
+  getAPI:function(){
+      let results = HTTP.get('https://data.austintexas.gov/resource/ecmv-9xxi.json');
+      let num = Restaurants.find().count() + 30;
+      results = results.data.splice(num, 30);
+
+      for(let item of results) {
+        Restaurants.insert(item);
+      }
+
+      return results;
+
+  },
   getPhotoData:function(url, id) {
     HTTP.get(url, {
       npmRequestOptions:{encoding: 'binary'}

@@ -8,7 +8,7 @@
   </form>
   <div class="panel panel-default">
     <div class="panel-body">
-      <div class="input-group pull-right col-md-3 col-sm-12">
+      <!-- <div class="input-group pull-right col-md-3 col-sm-12">
         <input type="search" ng-model="search" placeholder="Search" class="form-control"/>
         <div dropdown="" on-toggle="toggled(open)" class="dropdown input-group-btn">
           <button dropdown-toggle="" class="btn btn-primary dropdown-toggle">{{ orderProperty==='1' ? 'Ascending' : 'Descending' }}<span class="caret"></span></button>
@@ -17,22 +17,46 @@
             <li ng-click="orderProperty='-1'">Descending</li>
           </ul>
         </div>
-      </div>
-      <ul class="nav nav-tabs nav-stacked col-md-9 col-sm-12">
-        <li ng-repeat="site in sites">
-          <div class="row">
-            <div class="col-md-1 pull-right">
-              <button ng-click="ctrl.remove()" class="btn pull-right">&times;</button>
+      </div> -->
+      {{restaurants.length}}
+      <ul class="nav nav-tabs nav-stacked">
+        <li ng-repeat="site in restaurants">
+          <div class="row flex-row">
+
+            <div class="full">
+              <p><a href="/sites/{{site._id}}">{{ site.restaurant_name }}</a>
+              </p>
             </div>
 
-            <div class="col-xs-4">
+            <div class="col-md-2 flex-align-center">
+              <toggle-image-picker collection="Sites" item-id="site._id" ></toggle-image-picker>
+
+              <button ng-click="ctrl.remove()" class="btn">&times;</button>
+            </div>
+          </div>
+
+        </li>
+      </ul>
+
+
+      <ul class="nav nav-tabs nav-stacked">
+        <li ng-repeat="site in sites">
+          <div class="row flex-row">
+
+
+            <div class="col-xs-1">
               <item-image photo-id="site.photoId"></item-image>
             </div>
 
-            <div class="col-md-7">
+            <div class="full">
               <p><a href="/sites/{{site._id}}">{{ site.name }} - {{site.photoId}}</a>
-                <toggle-image-picker collection="Sites" item-id="site._id" ></toggle-image-picker>
               </p>
+            </div>
+
+            <div class="col-md-2 flex-align-center">
+              <toggle-image-picker collection="Sites" item-id="site._id" ></toggle-image-picker>
+
+              <button ng-click="ctrl.remove()" class="btn">&times;</button>
             </div>
           </div>
 

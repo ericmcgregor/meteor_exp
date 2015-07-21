@@ -6,12 +6,15 @@ angular.module('angularApp')
   $scope.sites = $meteor.collection(function() {
     return Sites.find({});
   });
+
   $scope.Sites = Sites;
+
   $meteor.autorun($scope, function() {
     $meteor.subscribe('sites').then(function() {
       $scope.sitesCount = $meteor.object(Counts, 'numberOfSites', false);
     });
   });
+
 
   $scope.save = function() {
     if($scope.form.$valid) {
