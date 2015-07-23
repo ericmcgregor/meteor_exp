@@ -12,6 +12,7 @@
   ],
   "dependencies": {
     "bower": "*",
-    "install": "~1.0.4"
+    "install": "~1.0.4",
+    "angular-schema-form": "~0.8.4"
   }
 }

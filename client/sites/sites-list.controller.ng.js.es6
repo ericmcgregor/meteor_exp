@@ -1,7 +1,10 @@
 'use strict'
 
 angular.module('angularApp')
-.controller('SitesListCtrl', function($scope, $meteor) {
+.factory('SitesJoined', function($rootScope, $meteor){
+  return {}
+})
+.controller('SitesListCtrl', function($scope, $meteor, SitesJoined) {
 
   $scope.sites = $meteor.collection(function() {
     return Sites.find({});

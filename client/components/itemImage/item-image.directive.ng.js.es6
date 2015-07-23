@@ -11,8 +11,28 @@ angular.module('angularApp')
     },
     controllerAs:"ctrl",
     scope:{},
-    controller:ItemImageControllerClass,
+    controller:class ItemImageControllerClass {
+      constructor($scope, $meteor){
+        // 'ngInject';
+
+        $meteor.autorun($scope, ()=>{
+          $scope.$meteorSubscribe('photos');
+          this.photo = $meteor.object(Photos, $scope.getReactively('ctrl.photoId'));
+        });
+
+      }
+
+    },
     link: function(scope, element, attrs, ctrl) {
+
+      scope.$watch('ctrl.photoId', function(value){
+        console.log(value)
+        if(value !== '' && value) {
+          element.show();
+        } else {
+          element.hide();
+        }
+      });
       element.find('a').click(function(e){
         e.preventDefault();
         let picker = '<photo-edit photo-id="ctrl.photo._id"></photo-edit>'
@@ -22,16 +42,3 @@ angular.module('angularApp')
     }
   };
 });
-
-class ItemImageControllerClass {
-  constructor($scope, $meteor){
-    // 'ngInject';
-
-    $meteor.autorun($scope, ()=>{
-      $scope.$meteorSubscribe('photos');
-      this.photo = $meteor.object(Photos, $scope.getReactively('ctrl.photoId'));
-    });
-
-  }
-
-}

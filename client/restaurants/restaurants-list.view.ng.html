@@ -18,15 +18,23 @@
           </ul>
         </div>
       </div>
+
+
+      <div ng-controller="FormController">
+        <form sf-schema="schema" sf-form="form" sf-model="model"></form>
+      </div>
+
       <p>Total number of restaurants: {{restaurantsCount.count}}</p>
       <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="col-md-12"></dir-pagination-controls>
       <table class="table table-bordered">
         <tbody>
           <tr dir-paginate="restaurant in restaurants | itemsPerPage: perPage" total-items="restaurantsCount.count">
-            <td><a href="/restaurants/{{restaurant._id}}">{{ restaurant.restaurant_name }}</a></td>
+            <td><item-image photo-id="restaurant.photoId"></item-image></td>
+            <td><a href="/restaurants/{{restaurant._id}}">{{ ::restaurant.restaurant_name }}</a></td>
             <td>{{::restaurant.score}}</td>
             <td>{{::restaurant.process_description}}</td>
             <td>{{::restaurant.zip_code}}</td>
+            <td><toggle-image-picker collection="Restaurants" item-id="restaurant._id" ></toggle-image-picker></td>
           </tr>
         </tbody>
       </table>

@@ -1,6 +1,34 @@
 'use strict'
 
 angular.module('angularApp')
+.controller('FormController', function($scope) {
+  $scope.updated = function(){
+    alert('updated')
+  }
+  $scope.schema = {
+      type: "object",
+      properties: {
+        name: { type: "string", minLength: 2, title: "Name", description: "Name or alias" },
+        title: {
+          type: "string",
+          enum: ['dr','jr','sir','mrs','mr','NaN','dj']
+        }
+      }
+    };
+
+    $scope.form = [
+  "*",
+  {
+    type: "submit",
+    title: "Save",
+    onClick: function(){
+      alert('test')
+    }
+  }
+];
+
+$scope.model = {};
+})
 .controller('RestaurantsListCtrl', function($scope, $meteor) {
   $scope.page = 1;
   $scope.perPage = 50;
@@ -12,6 +40,8 @@ angular.module('angularApp')
       console.log(data);
     })
   }
+
+  $scope.Restaurants = Restaurants;
 
   $scope.restaurants = $meteor.collection(Restaurants);
   $meteor.autorun($scope, function() {
