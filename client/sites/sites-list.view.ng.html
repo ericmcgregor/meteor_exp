@@ -18,43 +18,32 @@
           </ul>
         </div>
       </div> -->
+      {{mystuff.length}}
       <ul class="nav nav-tabs nav-stacked">
-        <li ng-repeat="site in restaurants">
+        <li ng-repeat="site in sites track by site._id">
           <div class="row flex-row">
-
-            <div class="full">
-              <p><a href="/sites/{{site._id}}">{{ site.restaurant_name }}</a>
-              </p>
-            </div>
-
-            <div class="col-md-2 flex-align-center">
-              <toggle-image-picker collection="Sites" item-id="site._id" ></toggle-image-picker>
-
-              <button ng-click="ctrl.remove()" class="btn">&times;</button>
-            </div>
-          </div>
-
-        </li>
-      </ul>
-
-
-      <ul class="nav nav-tabs nav-stacked">
-        <li ng-repeat="site in sites">
-          <div class="row flex-row">
-
             <div class="col-xs-1">
               <item-image photo-id="site.photoId"></item-image>
             </div>
 
             <div class="full">
-              <p><a href="/sites/{{site._id}}">{{ site.name }} - {{site.photoId}}</a>
+              <div>
+              <h4>
+                <a href="/sites/{{site._id}}">
+                  {{ ::site.name }} {{$index}}
+                </a>
+              </h4>
+              <p>
+                {{getPhoto(site.photoId, this)}}
+                Photo title: {{photo.title}}
               </p>
+              </div>
             </div>
 
             <div class="col-md-2 flex-align-center">
-              <toggle-image-picker collection="Sites" item-id="site._id" ></toggle-image-picker>
+              <toggle-image-picker collection="Sites" item-id="site._id"></toggle-image-picker>
 
-              <button ng-click="ctrl.remove()" class="btn">&times;</button>
+              <button ng-click="remove(site)" class="btn">&times;</button>
             </div>
           </div>
 

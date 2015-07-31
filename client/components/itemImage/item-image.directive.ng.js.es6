@@ -25,14 +25,13 @@ angular.module('angularApp')
     },
     link: function(scope, element, attrs, ctrl) {
 
-      scope.$watch('ctrl.photoId', function(value){
-        console.log(value)
-        if(value !== '' && value) {
-          element.show();
-        } else {
-          element.hide();
-        }
-      });
+      // scope.$watch('ctrl.photoId', function(value){
+      //   if(value !== '' && value) {
+      //     element.show();
+      //   } else {
+      //     element.hide();
+      //   }
+      // });
       element.find('a').click(function(e){
         e.preventDefault();
         let picker = '<photo-edit photo-id="ctrl.photo._id"></photo-edit>'

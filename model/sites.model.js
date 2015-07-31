@@ -11,3 +11,15 @@ Sites.allow({
     return true;
   }
 });
+
+Sites.attachSchema(new SimpleSchema({
+  name: {
+    type: String,
+    label: 'name'
+  },
+  photoId: {
+    type: String,
+    label: 'photoId',
+    optional: true
+  },
+}));

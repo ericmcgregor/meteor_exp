@@ -3,8 +3,10 @@ angular.module('angularApp', [
   'ui.router',
   'ui.bootstrap',
   'angularUtils.directives.dirPagination',
-  'schemaForm'
+  'schemaForm',
+  'uiGmapgoogle-maps'
 ]);
+
 
 onReady = function() {
   angular.bootstrap(document, ['angularApp']);

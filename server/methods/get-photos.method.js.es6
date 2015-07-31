@@ -1,12 +1,25 @@
 'use strict';
 
 Meteor.methods({
-  removeAll: function() {
-
-        return Restaurants.remove({});
+  addLotsOfSites:function(){
+    let i = 0;
+    let photos = Photos.find().fetch();
+    while (i < 200) {
+      Sites.insert({
+        name:'test',
+        photoId:photos[Math.floor((Math.random() * photos.length))]._id
+      });
+      i++;
+    }
+  },
+  removeAllSites:function(){
+    return Sites.remove({});
 
   },
-  getAPI:function(){
+  removeAllRestaurants: function() {
+        return Restaurants.remove({});
+  },
+  getRestaurantsAPI:function(){
       let results = HTTP.get('https://data.austintexas.gov/resource/ecmv-9xxi.json');
       let num = Restaurants.find().count() + 30;
       results = results.data.splice(num, 30);

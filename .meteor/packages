@@ -20,3 +20,4 @@ http
 mrt:publish-with-relations
 flemay:less-autoprefixer
 reywood:publish-composite
+angularui:angular-google-maps

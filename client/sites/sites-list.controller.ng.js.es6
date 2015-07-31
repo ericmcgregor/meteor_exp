@@ -1,21 +1,37 @@
 'use strict'
-
 angular.module('angularApp')
-.factory('SitesJoined', function($rootScope, $meteor){
-  return {}
-})
-.controller('SitesListCtrl', function($scope, $meteor, SitesJoined) {
+.controller('SitesListCtrl', function($scope, $meteor) {
 
-  $scope.sites = $meteor.collection(function() {
-    return Sites.find({});
-  });
+  // $scope.sites = $scope.$meteorCollection(function(){
+  //     return Sites.find({},{
+  //       transform:function(site){
+  //         var photo = Photos.findOne(site.photoId);
+  //         site.photo = photo;
+  //         return site;
+  //       }
+  //     });
+  //   });
+
+    $scope.sites = $scope.$meteorCollection(function(){
+        return Sites.find();
+      });
+
+
+
 
   $scope.Sites = Sites;
+  $scope.Photos = Photos;
 
-  $meteor.autorun($scope, function() {
-    $meteor.subscribe('sites').then(function() {
+  $scope.getPhoto = function(id, _scope) {
+    _scope.photo = Photos.findOne(id);
+  }
+
+  $meteor.autorun($scope, () => {
+    $scope.$meteorSubscribe('photos');
+    $scope.$meteorSubscribe('sites').then(() => {
       $scope.sitesCount = $meteor.object(Counts, 'numberOfSites', false);
     });
+    console.log($scope.sites)
   });
 
 
